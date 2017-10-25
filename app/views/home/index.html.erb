@@ -3,8 +3,9 @@
 <h4>The universe is the totality if everything that exists, has existed or ever will exist. </h4>
 
 <div class="container">
+  <div class="boxes">
   <% @questions.each do |q| %>
-      <div class="media">
+      <div class="media" data-target="<%= question_path(q) %>">
         <div class="media-left">
             <a href="#">
             <img class="media-object" src="<%= q.gravatar %>">
@@ -13,15 +14,17 @@
     
         <div class="media-body">
           <h4 class="media-heading"><%= q.email %> asked:</h4>
-          <div><%= time_ago_in_words q.created_at %> ago </div>
+
+          <div class="time"><%= time_ago_in_words q.created_at %> ago </div>
           <div><%= q.body %></div>
-          <div><a href= "<%= question_path(q) %>" class="btn btn-success btn-xs">View answers</a></div>
+          <div class="view-button"><a href= "<%= question_path(q) %>" class="btn btn-success btn-xs">View answers</a></div>
       </div>
     </div>
   <% end %>
+  </div>
 
    <% if @questions.empty? %>
     <div class="alert alert-info">Nothing here yet, be the first to ask?</div>
   <% end %>
 
-</div>
+</div> 
